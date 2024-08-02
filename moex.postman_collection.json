@@ -1,0 +1,786 @@
+{
+	"info": {
+		"_postman_id": "c843751e-9ade-45d3-b1ab-31325ba7abb5",
+		"name": "moex",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "moex2",
+			"item": [
+				{
+					"name": "/health",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/stream+json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:24300/health",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "24300",
+							"path": [
+								"health"
+							],
+							"query": [
+								{
+									"key": "engine",
+									"value": "stock",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "start",
+									"value": "2000",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/iss/securities",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/stream+json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:24300/iss/securities",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "24300",
+							"path": [
+								"iss",
+								"securities"
+							],
+							"query": [
+								{
+									"key": "engine",
+									"value": "stock",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "5",
+									"disabled": true
+								},
+								{
+									"key": "start",
+									"value": "2000",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/iss/engines/stock/markets/shares/securities/{security}/trades",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/stream+json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:24300/iss/engines/stock/markets/shares/securities/sber/trades",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "24300",
+							"path": [
+								"iss",
+								"engines",
+								"stock",
+								"markets",
+								"shares",
+								"securities",
+								"sber",
+								"trades"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/iss/engines/stock/markets/shares/securities/{security}/candles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/stream+json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:24300/iss/engines/stock/markets/shares/securities/sber/candles?from=2024-07-10&till=2024-07-12&interval=24",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "24300",
+							"path": [
+								"iss",
+								"engines",
+								"stock",
+								"markets",
+								"shares",
+								"securities",
+								"sber",
+								"candles"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2024-07-10"
+								},
+								{
+									"key": "till",
+									"value": "2024-07-12"
+								},
+								{
+									"key": "interval",
+									"value": "24"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/iss/engines/stock/markets/shares/boards/TQBR/securities/{security}/candles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/stream+json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:24300/iss/engines/stock/markets/shares/boards/TQBR/securities/lkoh/candles?from=2024-01-01&till=2024-07-31&interval=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "24300",
+							"path": [
+								"iss",
+								"engines",
+								"stock",
+								"markets",
+								"shares",
+								"boards",
+								"TQBR",
+								"securities",
+								"lkoh",
+								"candles"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "till",
+									"value": "2024-07-31"
+								},
+								{
+									"key": "interval",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/iss/history/engines/stock/markets/shares/boards/TQBR/securities/{security}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/stream+json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:24300/iss/history/engines/stock/markets/shares/boards/TQBR/securities/sber?from=2022-07-05&till=2024-07-12",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "24300",
+							"path": [
+								"iss",
+								"history",
+								"engines",
+								"stock",
+								"markets",
+								"shares",
+								"boards",
+								"TQBR",
+								"securities",
+								"sber"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2022-07-05"
+								},
+								{
+									"key": "till",
+									"value": "2024-07-12"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/iss/engines/stock/markets/shares",
+			"item": [
+				{
+					"name": "/securities/AFLT/candles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://iss.moex.com/iss/engines/stock/markets/shares/securities/lkoh/candles.json?from=2024-07-31&till=2024-07-31&start=500&interval=1",
+							"protocol": "https",
+							"host": [
+								"iss",
+								"moex",
+								"com"
+							],
+							"path": [
+								"iss",
+								"engines",
+								"stock",
+								"markets",
+								"shares",
+								"securities",
+								"lkoh",
+								"candles.json"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2024-07-31"
+								},
+								{
+									"key": "till",
+									"value": "2024-07-31"
+								},
+								{
+									"key": "start",
+									"value": "500"
+								},
+								{
+									"key": "interval",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/securities/AFLT/trades.json",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://iss.moex.com/iss/engines/stock/markets/shares/securities/SBER/trades.json?limit=5000&start=120000",
+							"protocol": "https",
+							"host": [
+								"iss",
+								"moex",
+								"com"
+							],
+							"path": [
+								"iss",
+								"engines",
+								"stock",
+								"markets",
+								"shares",
+								"securities",
+								"SBER",
+								"trades.json"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5000"
+								},
+								{
+									"key": "start",
+									"value": "120000"
+								},
+								{
+									"key": "tradeno",
+									"value": "10910307807",
+									"disabled": true
+								},
+								{
+									"key": "next_trade",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/securities/AFLT/orderbook.json",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://iss.moex.com/iss/engines/stock/markets/shares/securities/AFLT/orderbook.json",
+							"protocol": "https",
+							"host": [
+								"iss",
+								"moex",
+								"com"
+							],
+							"path": [
+								"iss",
+								"engines",
+								"stock",
+								"markets",
+								"shares",
+								"securities",
+								"AFLT",
+								"orderbook.json"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "2024-06-25",
+									"disabled": true
+								},
+								{
+									"key": "till",
+									"value": "2024-06-27",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/boards/TQBR/securities/SBER/candles.json",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/SBER/candles",
+							"protocol": "https",
+							"host": [
+								"iss",
+								"moex",
+								"com"
+							],
+							"path": [
+								"iss",
+								"engines",
+								"stock",
+								"markets",
+								"shares",
+								"boards",
+								"TQBR",
+								"securities",
+								"SBER",
+								"candles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/boards/TQBR/securities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities.json",
+							"protocol": "https",
+							"host": [
+								"iss",
+								"moex",
+								"com"
+							],
+							"path": [
+								"iss",
+								"engines",
+								"stock",
+								"markets",
+								"shares",
+								"boards",
+								"TQBR",
+								"securities.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/boards/TQBR/securities/columns",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://iss.moex.com/iss/engines/stock/markets/shares/boards/TQBR/securities/columns.json",
+							"protocol": "https",
+							"host": [
+								"iss",
+								"moex",
+								"com"
+							],
+							"path": [
+								"iss",
+								"engines",
+								"stock",
+								"markets",
+								"shares",
+								"boards",
+								"TQBR",
+								"securities",
+								"columns.json"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/iss/index.json",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://iss.moex.com/iss/index.json",
+					"protocol": "https",
+					"host": [
+						"iss",
+						"moex",
+						"com"
+					],
+					"path": [
+						"iss",
+						"index.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/iss/securitygroups.json",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://iss.moex.com/iss/securitygroups.json",
+					"protocol": "https",
+					"host": [
+						"iss",
+						"moex",
+						"com"
+					],
+					"path": [
+						"iss",
+						"securitygroups.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/iss/sitenews.json",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://iss.moex.com/iss/sitenews.json",
+					"protocol": "https",
+					"host": [
+						"iss",
+						"moex",
+						"com"
+					],
+					"path": [
+						"iss",
+						"sitenews.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/iss/events.json",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://iss.moex.com/iss/events.json",
+					"protocol": "https",
+					"host": [
+						"iss",
+						"moex",
+						"com"
+					],
+					"path": [
+						"iss",
+						"events.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/iss/engines.json",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://iss.moex.com/iss/engines.json",
+					"protocol": "https",
+					"host": [
+						"iss",
+						"moex",
+						"com"
+					],
+					"path": [
+						"iss",
+						"engines.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/iss/securities.json",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://iss.moex.com/iss/securities.json?is_trading=1&iss.only=trade_engines&engine=stock&market=shares&start=0&lang=ru&q=&limit=100",
+					"protocol": "https",
+					"host": [
+						"iss",
+						"moex",
+						"com"
+					],
+					"path": [
+						"iss",
+						"securities.json"
+					],
+					"query": [
+						{
+							"key": "is_trading",
+							"value": "1"
+						},
+						{
+							"key": "iss.only",
+							"value": "trade_engines"
+						},
+						{
+							"key": "iss.only",
+							"value": "markets",
+							"disabled": true
+						},
+						{
+							"key": "engine",
+							"value": "stock"
+						},
+						{
+							"key": "market",
+							"value": "shares"
+						},
+						{
+							"key": "start",
+							"value": "0"
+						},
+						{
+							"key": "lang",
+							"value": "ru"
+						},
+						{
+							"key": "q",
+							"value": ""
+						},
+						{
+							"key": "limit",
+							"value": "100"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/iss/turnovers.json",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://iss.moex.com/iss/turnovers.json",
+					"protocol": "https",
+					"host": [
+						"iss",
+						"moex",
+						"com"
+					],
+					"path": [
+						"iss",
+						"turnovers.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/iss/history/engines/stock/markets/shares/boards/TQBR/securities/sber.json",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://iss.moex.com/iss/history/engines/stock/markets/shares/boards/TQBR/securities/sber.json?from=2023-07-10&till=2024-07-11",
+					"protocol": "https",
+					"host": [
+						"iss",
+						"moex",
+						"com"
+					],
+					"path": [
+						"iss",
+						"history",
+						"engines",
+						"stock",
+						"markets",
+						"shares",
+						"boards",
+						"TQBR",
+						"securities",
+						"sber.json"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2023-07-10"
+						},
+						{
+							"key": "till",
+							"value": "2024-07-11"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/iss/history/engines/stock/markets/shares/sessions/{session}/securities/sber.json",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://iss.moex.com/iss/history/engines/stock/markets/shares/sessions/1/securities/sber.json?from=2024-06-27&till=2024-06-27",
+					"protocol": "https",
+					"host": [
+						"iss",
+						"moex",
+						"com"
+					],
+					"path": [
+						"iss",
+						"history",
+						"engines",
+						"stock",
+						"markets",
+						"shares",
+						"sessions",
+						"1",
+						"securities",
+						"sber.json"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2024-06-27"
+						},
+						{
+							"key": "till",
+							"value": "2024-06-27"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/iss/engines/stock/markets.json",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://iss.moex.com/iss/engines/stock/markets.json?from=2024-06-25&till=2024-06-27",
+					"protocol": "https",
+					"host": [
+						"iss",
+						"moex",
+						"com"
+					],
+					"path": [
+						"iss",
+						"engines",
+						"stock",
+						"markets.json"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2024-06-25"
+						},
+						{
+							"key": "till",
+							"value": "2024-06-27"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -35,7 +35,7 @@ curl -X GET "http://localhost:24300/iss/history/engines/stock/markets/shares/boa
 
 - в таблицу securities_candles сохраняются 10-ти минутные свечи.
 прокси на официальный https://iss.moex.com/iss/reference/155
-curl -X GET "http://localhost:24300/iss/engines/stock/markets/shares/securities/sber/candles?from=2024-03-01&till=2024-07-15"
+curl -X GET "http://localhost:24300/iss/engines/stock/markets/shares/securities/lkoh/candles?from=2024-01-01&till=2024-07-31&interval=1"
 
 ## [Apache Superset](https://superset.apache.org/)
 Username:guest  
