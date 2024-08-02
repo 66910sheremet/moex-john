@@ -59,8 +59,8 @@ public class SecuritiesCandlesDao {
         if (row == null || row.getBegin() == null || row.getEnd() == null || request.getSecurity() == null) {
             return (S) Mono.just(new SecuritiesCandlesM1());
         }
-        var begin = MapperUtils.mapFromObjectToLocalDateTime(row.getBegin());
-        var end = MapperUtils.mapFromObjectToLocalDateTime(row.getEnd());
+        var begin = row.getBegin();
+        var end = row.getEnd();
         return switch (Objects.requireNonNull(Interval.valueOf(request.getInterval()))) {
             case M1 -> (S) securitiesCandlesM1Repository.findByPk(
                             request.getSecurity(),
