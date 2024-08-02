@@ -13,7 +13,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
     volumes:
-      - postgres:/data/postgres
+      - pg_moex2:/var/lib/postgresql/data
     ports:
       - '5440:5432'
     networks:
@@ -147,6 +147,10 @@ services:
     restart: always
     volumes:
       - redis:/data
+    networks:
+      - my_network
+    ports:
+      - '6379:6379'
 
   superset:
     container_name: superset
@@ -236,7 +240,9 @@ services:
     command: webserver
 
 volumes:
-  postgres:
+  pg_moex2:
+    external: false
+    name: pg_moex2
   pg_data:
     external: false
     name: pg_data

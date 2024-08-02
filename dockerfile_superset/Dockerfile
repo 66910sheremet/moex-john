@@ -6,4 +6,12 @@ USER root
 #RUN chmod 777 /var/lib/superset/superset.db
 #USER superset
 
+COPY ./dockerfile_superset/requirements.txt /superset/requirements.txt
+
+RUN pip install --upgrade --force-reinstall pip \
+ && pip install --upgrade --force-reinstall --no-deps -r /superset/requirements.txt \
+ && pip install Werkzeug --upgrade \
+ && pip install -U Flask-WTF \
+ && pip install psycopg2-binary
+
 MAINTAINER Temnikov Dmitry
