@@ -1,9 +1,11 @@
 package ru.exdata.moex.mapper;
 
-import java.time.*;
+import java.time.DateTimeException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.ChronoField;
 import java.util.Locale;
 
 public class MapperUtils {
@@ -78,6 +80,15 @@ public class MapperUtils {
         }
     }
 
+    public static String mapFromObjectToString(Object o) {
+        if (o == null) {
+            return "";
+        } else if (o instanceof String) {
+            return String.valueOf(o);
+        } else {
+            throw new RuntimeException("value type not defined: " + o.getClass());
+        }
+    }
 
     public static String mapFromInstantToString(Instant date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(FORMAT_DATE);

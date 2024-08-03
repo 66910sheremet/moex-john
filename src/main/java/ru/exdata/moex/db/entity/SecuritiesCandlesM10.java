@@ -10,7 +10,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @SuperBuilder
 @MappedEntity(value = "securities_candles_m10", namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase.class)

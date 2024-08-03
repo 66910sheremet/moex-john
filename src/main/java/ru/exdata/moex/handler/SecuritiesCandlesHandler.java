@@ -114,9 +114,6 @@ public class SecuritiesCandlesHandler {
         if (!Set.of(1, 10, 60, 24, 7, 31).contains(request.getInterval())) {
             throw new RuntimeException("Ошибка валидатора запроса. Interval should be eq = 1,10,60,24,7,31");
         }
-        /*if (Duration.between(request.getFrom(), request.getTill()).toDays() <= 3 * 365) {
-            throw new RuntimeException("Ошибка валидатора запроса. Не более 3-х лет");
-        }*/
     }
 
 }

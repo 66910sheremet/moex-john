@@ -7,12 +7,10 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.exdata.moex.db.dao.SecuritiesDao;
 import ru.exdata.moex.dto.RequestParamSecurities;
-import ru.exdata.moex.dto.SecuritiesDto;
+import ru.exdata.moex.dto.securities.Row;
 import ru.exdata.moex.handler.client.SecuritiesApiClient;
 import ru.exdata.moex.handler.model.PageNumber;
 
-import java.time.Duration;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,19 +25,19 @@ public class SecuritiesHandler {
     private final SecuritiesDao securitiesDao;
     private final int MOEX_RESPONSE_MAX_ROW = 100;
 
-    public Flux<Object[]> fetch(RequestParamSecurities request) {
+    public Flux<Row> fetch(RequestParamSecurities request) {
         validateRequest(request);
         return fetchSecurities(request)
                 .doOnNext(it -> securitiesDao.save(it).subscribe());
     }
 
-    private Flux<Object[]> fetchSecurities(RequestParamSecurities request) {
+    private Flux<Row> fetchSecurities(RequestParamSecurities request) {
         final PageNumber pageNumber = new PageNumber();
         return Flux.defer(() -> fetchPageable(request, pageNumber))
                 .repeatWhen(transactions -> transactions.takeWhile(transactionCount -> pageNumber.get() >= 0));
     }
 
-    private Flux<Object[]> fetchPageable(RequestParamSecurities request, PageNumber pageNumber) {
+    private Flux<Row> fetchPageable(RequestParamSecurities request, PageNumber pageNumber) {
         return securitiesApiClient.fetch(
                         request.getIsTrading(),
                         request.getEngine(),
@@ -49,10 +47,10 @@ public class SecuritiesHandler {
                         request.getQ(),
                         String.valueOf(request.getLimit()),
                         request.getIssOnly())
-                .filter(it -> !it.getSecurities().getData().isEmpty())
+                .filter(it -> !it.getData().getRows().isEmpty())
                 .doOnNext(it -> {
-                    var firstName = it.getSecurities().getData();
-                    log.debug("Securities: " + firstName.get(0)[1]);
+                    var firstName = it.getData();
+                    log.debug("Securities: " + firstName.getRows().get(0).getSecId());
                     if (request.getLimit() <= MOEX_RESPONSE_MAX_ROW) {
                         pageNumber.increment(request.getLimit());
                         log.debug("pageNumber: " + pageNumber.get());
@@ -63,9 +61,9 @@ public class SecuritiesHandler {
                 })
                 .switchIfEmpty(Mono.defer(() -> {
                     pageNumber.stop();
-                    return Mono.fromCallable(SecuritiesDto::new).delayElement(Duration.ofSeconds(10L));
+                    return Mono.empty();
                 }))
-                .flatMapIterable(it -> it.getSecurities() == null ? Collections.singleton(new Object[0]) : it.getSecurities().getData())
+                .flatMapIterable(it -> it.getData().getRows())
                 ;
     }
 

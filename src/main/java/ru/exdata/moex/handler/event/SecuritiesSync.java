@@ -12,10 +12,11 @@ import reactor.core.scheduler.Schedulers;
 import ru.exdata.moex.db.entity.MoexSync;
 import ru.exdata.moex.db.repository.MoexSyncRepository;
 import ru.exdata.moex.dto.RequestParamSecurities;
+import ru.exdata.moex.dto.securities.Row;
 import ru.exdata.moex.handler.SecuritiesHandler;
+import ru.exdata.moex.handler.SecuritiesSpecHandler;
 
 import java.time.Duration;
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Slf4j
@@ -23,8 +24,10 @@ import java.time.LocalDateTime;
 @Singleton
 public class SecuritiesSync {
 
-    private final SecuritiesHandler securitiesService;
     private final MoexSyncRepository moexSyncRepository;
+    private final SecuritiesHandler securitiesService;
+    private final SecuritiesSpecHandler securitiesSpecHandler;
+
 
     @Transactional
     @EventListener
@@ -32,7 +35,9 @@ public class SecuritiesSync {
         log.info("Startup sync securities");
         moexSyncRepository.findByDataTypeOrderByUpdateDateDesc(SyncTypes.Securities.value)
                 .switchIfEmpty(Mono.defer(() -> {
-                            fetchStocks().subscribe();
+                            fetchStocks()
+                                    .doOnNext(it -> securitiesSpecHandler.fetchBySecId(it.getSecId()).subscribe())
+                                    .subscribe();
 
                             var entity = new MoexSync();
                             entity.setDataType(SyncTypes.Securities.value);
@@ -56,7 +61,7 @@ public class SecuritiesSync {
         ;
     }
 
-    private Flux<Object[]> fetchStocks() {
+    private Flux<Row> fetchStocks() {
         return securitiesService.fetch(new RequestParamSecurities(
                 "1",
                 "stock",

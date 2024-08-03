@@ -10,6 +10,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import ru.exdata.moex.dto.RequestParamSecurities;
+import ru.exdata.moex.dto.securities.Row;
 import ru.exdata.moex.handler.SecuritiesHandler;
 
 @Validated
@@ -21,7 +22,7 @@ public class SecuritiesRouter {
 
     @Get("/securities")
     @Status(HttpStatus.OK)
-    public Flux<Object[]> getSecurities(@Valid @RequestBean RequestParamSecurities request) {
+    public Flux<Row> getSecurities(@Valid @RequestBean RequestParamSecurities request) {
         return securitiesService.fetch(request);
     }
 

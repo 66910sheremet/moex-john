@@ -171,6 +171,26 @@ services:
     depends_on:
       - redis
 
+  superset2:
+    container_name: superset2
+    build:
+      context: .
+      dockerfile: ./dockerfile_superset2/Dockerfile
+    restart: always
+    environment:
+      MAPBOX_API_KEY: ${MAPBOX_API_KEY}
+      SUPERSET_HOME: /etc/superset
+      SUPERSET_CONFIG_PATH: /etc/superset/superset_config.py
+    volumes:
+      - ${WD}/superset2/superset_config.py:/etc/superset/superset_config.py
+      - ${WD}/superset2/superset.db:/var/lib/superset/superset.db
+    networks:
+      - my_network
+    ports:
+      - '8089:8088'
+    depends_on:
+      - redis
+
   postgres_secmaster:
     build:
       context: .
